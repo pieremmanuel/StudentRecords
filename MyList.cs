@@ -75,6 +75,10 @@ public class MyList<T> : IEnumerable<T>
 
     public bool Remove(T item)
     {
+        if (count == 0)
+        {
+            throw new InvalidOperationException("List is empty");
+        }
         for (int i = 0; i < count; i++)
         {
             if (this.items[i].Equals(item)) 
@@ -120,19 +124,27 @@ public class MyList<T> : IEnumerable<T>
         }
     }
 
-    // Explicit non-generic implementation for IEnumerable
+    // No clue what this is
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
-
+    public void Sort()
+    {
+        Array.Sort(items, 0, count); // Sort only the filled portion
+        Console.WriteLine("List sorted.");
+    }
 
     public T this[int index]
     {
         get
         {
-            if (index < 0 || index >= count)
+            if (index >= count)
                 throw new IndexOutOfRangeException();
+            if(index < 0)
+            {
+                return items[count + index];
+            }
             return items[index];
         }
         set
@@ -164,6 +176,4 @@ public class MyList<T> : IEnumerable<T>
         }
         return -1;
     }
-
-
 }

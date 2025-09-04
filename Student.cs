@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentRecords
 {
-    public class Student
+    public class Student : IComparable<Student>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -29,6 +29,12 @@ namespace StudentRecords
         public override int GetHashCode()
         {
             return HashCode.Combine(Id, Name, GPA);
+        }
+
+        public int CompareTo(Student other)
+        {
+            if (other == null) return 1;
+            return GPA.CompareTo(other.GPA);
         }
 
     }

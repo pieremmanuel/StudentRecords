@@ -19,7 +19,10 @@ class Program
         Console.WriteLine("3. Insert Student at Position");
         Console.WriteLine("4. Remove first instance");
         Console.WriteLine("5. Remove at Index");
+        Console.WriteLine("6. Sort Students by GPA");
         Console.WriteLine("0. Exit");
+
+        Console.WriteLine(studentList[-1]);
         do
         {
             Console.Write("Enter your choice: ");
@@ -93,7 +96,12 @@ class Program
 
                         break;
                     }
-
+                case 6:
+                    {
+                        studentList.Sort();
+                        Console.WriteLine("Students sorted by GPA.");
+                        break;
+                    }
             }
         } while (choice != 0);
 
